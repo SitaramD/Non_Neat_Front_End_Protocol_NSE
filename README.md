@@ -1,4 +1,4 @@
-## 5 Rules for Low-Latency NNF in SystemVerilog
+## Rules for Low-Latency NNF in SystemVerilog
 
 **1. Parse on the fly, never store-and-forward**
 NNF messages are packed, big-endian structs with every field at a fixed offset. Decode the Transaction Code in the first bytes and use it to pick the offset map. Then pull out each field as its bytes arrive, so the result is ready on the last byte and not one full message later. Describe each layout as a `typedef struct packed`, so the offsets come straight from the spec and aren't hand-counted.
